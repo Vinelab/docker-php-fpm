@@ -89,7 +89,7 @@ docker run -d \
 ##### Run PHP-FPM
 ```
 docker run -d \
-    --name php \
+    --name fpm \
     --expose 9000 \
     --volumes-from code \
     vinelab/php-fpm
