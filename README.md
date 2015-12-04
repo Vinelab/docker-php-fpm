@@ -9,6 +9,39 @@ A PHP-FPM image with the following packages (compactible with Laravel projects)
 
 ### Usage
 
+#### Composer
+
+Using the composer tag to install composer dependencies.
+
+```
+docker run --rm -v /path/to/source:/code vinelab/php-fpm:composer
+```
+
+##### Authenticating Composer
+
+In order to install private repositories an auth token must be passed to composer,
+you can do that by providing your own `auth.json` file as such:
+
+`/path/to/my/auth.json`
+
+```json
+{
+    "http-basic": {},
+    "github-oauth": {
+        "github.com": "<TOKEN>"
+    },
+    "gitlab-oauth": {}
+}
+```
+
+And run using that file as a volume:
+
+```
+docker run --rm -v /path/to/my/auth.json:/root/.composer/auth.json \
+    -v /path/to/source:/code \
+    vinelab/php-fpm:composer
+```
+
 #### With NGINX
 
 - Create the host file `nginx.host.conf`
